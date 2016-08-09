@@ -15,3 +15,25 @@ storage:
         v4auth: true
         chunksize: 5242880
         rootdirectory: /
+
+auth:
+    token:
+        realm: https://repo-staging.prod.sagebase.org/docker/v1/bearerToken
+        service: docker.synapse.org
+        issuer: www.synapse.org
+        rootcertbundle: /etc/docker/registry/cert.pem
+
+notifications:
+    endpoints:
+      - name: Synapse
+        disabled: true
+        url: https://repo-staging.prod.sagebase.org/dockerRegistryListener/v1/events
+        headers:
+            Authentication: [Basic: <user : password>]
+        timeout: 1m
+        threshold: 1m
+        backoff: 30s
+
+
+
+
